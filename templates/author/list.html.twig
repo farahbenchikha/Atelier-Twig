@@ -1,0 +1,27 @@
+{% if authors is empty %}
+    <p>Pas d'élément</p>
+{% else %}
+    <table>
+        <tr>
+            <th>Détails</th>
+            <th>Image</th>
+            <th>ID</th>
+            <th>User Name</th>
+            <th>Email</th>
+            <th>Nb Books</th>
+        </tr>
+        {% for author in authors %}
+            <tr>
+                <td><a href="{{ path('author_details', { 'id': author.id }) }}">Détails</a></td> 
+                <td><img src="{{ asset(author.picture) }}" alt="{{ author.username }}" style="width: 100px; height: auto;"></td>
+                <td>{{ author.id }}</td>
+                <td>{{ author.username | upper }}</td>
+                <td>{{ author.email }}</td>
+                <td>{{ author.nb_books }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+
+<p>Nombre d'auteurs : {{ authors|length }}</p>
+<p>Nombre total de livres : {{ totalBooks }}</p>
